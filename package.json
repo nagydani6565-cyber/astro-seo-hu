@@ -15,6 +15,6 @@
     "astro": "^7.4.0"
   },
   "devDependencies": {
-    "astro-seo-hu": "file:.."
+    "astro-seo-hu": "^0.1.0"
   }
 }
