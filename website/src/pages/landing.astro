@@ -1,0 +1,232 @@
+---
+// playground/src/pages/landing.astro
+---
+
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astro SEO HU — SEO audit plugin magyar fejlesztőknek</title>
+    <meta name="description" content="Kifejezetten a magyar piacra szabott SEO audit plugin Astro-hoz. Ékezet-ellenőrzés, magyar nyelvi szabályok, gyönyörű HTML riportok." />
+    <style>
+      /* Alap stílusok, sötét téma */
+      :root {
+        --bg: #0f1115;
+        --bg-secondary: #1a1d24;
+        --text: #e6e8eb;
+        --muted: #8b949e;
+        --primary: #4aa3ff;
+        --primary-hover: #3388ee;
+        --border: #2d333b;
+        --accent: #3fb950;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      a { color: var(--primary); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      
+      /* Navigáció */
+      nav {
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        background: rgba(15, 17, 21, 0.8);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .logo { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+      .logo span { color: var(--primary); }
+      
+      /* Hero szekció */
+      .hero {
+        text-align: center;
+        padding: 6rem 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+      .hero h1 span {
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--muted);
+        max-width: 650px;
+        margin: 0 auto 2rem;
+      }
+      .btn {
+        display: inline-block;
+        background: var(--primary);
+        color: #fff;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: background 0.2s;
+      }
+      .btn:hover { background: var(--primary-hover); text-decoration: none; }
+      
+      /* Képernyőkép */
+      .preview {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .preview img {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      }
+      
+      /* Jellemzők */
+      .features {
+        padding: 6rem 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .features h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 3rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      .card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+      .card h3 { margin-top: 0; font-size: 1.2rem; }
+      .card p { color: var(--muted); margin-bottom: 0; }
+      
+      /* Árazás */
+      .pricing {
+        padding: 6rem 2rem;
+        text-align: center;
+      }
+      .pricing h2 { font-size: 2rem; margin-bottom: 3rem; }
+      .price-card {
+        background: var(--bg-secondary);
+        border: 2px solid var(--primary);
+        border-radius: 16px;
+        padding: 3rem;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .price-card .price {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 1rem 0;
+      }
+      .price-card .price span {
+        font-size: 1rem;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .price-card ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin: 2rem 0;
+      }
+      .price-card ul li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .price-card ul li:last-child { border-bottom: none; }
+      
+      footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Astro<span>SEO</span> HU</div>
+      <a href="https://payhip.com/b/stEzR" target="_blank" rel="noopener" class="btn" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Vásárlás</a>
+    </nav>
+
+    <header class="hero">
+      <h1>SEO audit, ami <span>magyarul</span> ért.</h1>
+      <p>
+        Az Astro SEO HU egy build-időben futó plugin, amely kiszúrja a magyar weboldalak leggyakoribb SEO hibáit. Ékezetek, nyelvi beállítások, karakterkódolás — minden, amit a nemzetközi eszközök figyelmen kívül hagynak.
+      </p>
+      <a href="#arazas" class="btn">Prémium verzió megtekintése</a>
+    </header>
+
+    <section class="preview">
+      <img src="/report-preview.png" alt="Astro SEO HU HTML riport előnézet" />
+    </section>
+
+    <section class="features">
+      <h2>Miért válaszd ezt?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🇭🇺 Magyar nyelvi szabályok</h3>
+          <p>A title és description hosszakat a magyar szavak hosszához igazítja, és figyelmeztet, ha a Google csonkolni fogja.</p>
+        </div>
+        <div class="card">
+          <h3>🔤 Ékezet-ellenőrzés</h3>
+          <p>Kiszúrja a hiányzó UTF-8 karakterkódolást, ami a magyar ékezetes karakterek (á, é, í, ó, ö, ő, ú, ü, ű) miatt kritikus.</p>
+        </div>
+        <div class="card">
+          <h3>📄 Gyönyörű HTML riport</h3>
+          <p>Egyetlen parancs, és kapsz egy letisztult, sötét témájú riportot, amit bátran átadhatsz az ügyfelednek.</p>
+        </div>
+        <div class="card">
+          <h3>⚙️ CI/CD integráció</h3>
+          <p>A JSON riport segítségével a build pipeline-od automatikusan jelezheti a SEO hibákat.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="arazas">
+      <h2>Egyszerű, átlátható árazás</h2>
+      <div class="price-card">
+        <h3>Prémium Licenc</h3>
+        <div class="price">15 000 Ft <span>/ örökös</span></div>
+        <ul>
+          <li>✅ HTML vizuális riport</li>
+          <li>✅ JSON riport (CI/CD-hez)</li>
+          <li>✅ Korlátlan projekt</li>
+          <li>✅ Életre szóló frissítések</li>
+          <li>❌ Konzol riport (ez ingyenes)</li>
+        </ul>
+        <a href="https://payhip.com/b/stEzR" target="_blank" rel="noopener" class="btn" style="width: 100%; margin-top: 1rem;">Megvásárolom</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Astro SEO HU. Minden jog fenntartva.</p>
+      <p><a href="#">Dokumentáció</a> · <a href="#">Kapcsolat</a></p>
+    </footer>
+  </body>
+</html>
